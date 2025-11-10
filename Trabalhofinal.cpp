@@ -24,6 +24,7 @@ int main(){
     queue<paciente> V, A, D, B;
     char opcao;
     while (true){
+        cout << "\n[C] Chegada\n[A] Atendimento\n[D] Display\n[Q] Sair\n> ";
         cin >> opcao;
         switch (opcao){
 
@@ -33,13 +34,13 @@ int main(){
             break;
         }
         case 'A':{
-
+            break;
         }
         case 'D':{
-            
+            break;
         }
         case 'Q':{
-            
+            break;
         }
 
         default:
