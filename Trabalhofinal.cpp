@@ -23,7 +23,8 @@ struct paciente
 int main(){
     queue<paciente> V, A, D, B;
     char opcao;
-    while (true){
+    bool controle = true;
+    while (controle){
         cout << "\n[C] Chegada\n[A] Atendimento\n[D] Display\n[Q] Sair\n> ";
         cin >> opcao;
         switch (opcao){
@@ -40,11 +41,11 @@ int main(){
             break;
         }
         case 'Q':{
-            break;
+            controle = false;
         }
 
         default:
-            break;
+            controle = false;
         }
     }
 
