@@ -27,14 +27,31 @@ int main(){
     while (controle){
         cout << "\n[C] Chegada\n[A] Atendimento\n[D] Display\n[Q] Sair\n> ";
         cin >> opcao;
+        paciente p;
         switch (opcao){
 
         case 'C':{
-            paciente p;
             cin >> p.senha >> p.prioridade >> p.hh >> p.mm;
-            break;
+            if(p.prioridade == "V")
+            {
+                V.push(p);
+            }
+            else if (p.prioridade == "A")
+            {
+               A.push(p);
+            }
+
+            else if (p.prioridade == "D")
+            {
+               D.push(p);
+            }
+            else if (p.prioridade == "B")
+            {
+               B.push(p);
+            }
         }
         case 'A':{
+            cout << p.hh << p.mm;
             break;
         }
         case 'D':{
