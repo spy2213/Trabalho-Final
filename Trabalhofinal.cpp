@@ -54,7 +54,12 @@ int main(){
             break;
         }
         case 'A':{
-            cout << p.hh << p.mm;
+            if (V.empty() && A.empty() && D.empty() && B.empty()) {
+                cout << p.hh << p.mm << "Sem pacientes aguardando atendimento." << endl;
+            }
+            else{
+
+            }
             break;
         }
         case 'D':{
