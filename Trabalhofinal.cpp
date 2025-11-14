@@ -24,6 +24,11 @@ int main(){
     queue<paciente> V, A, D, B;
     char opcao;
     bool controle = true;
+
+    int totalAtendidos = 0;
+    int atendidosV = 0, atendidosA = 0, atendidosD = 0, atendidosB = 0;
+    int maxlotacao = 0;
+    int esperaMaxima = 0;
     while (controle){
         cout << "\n[C] Chegada\n[A] Atendimento\n[D] Display\n[Q] Sair\n> ";
         cin >> opcao;
@@ -32,23 +37,21 @@ int main(){
 
         case 'C':{
             cin >> p.senha >> p.prioridade >> p.hh >> p.mm;
-            if(p.prioridade == "V")
-            {
+            if(p.prioridade == "V"){
                 V.push(p);
             }
-            else if (p.prioridade == "A")
-            {
+            else if (p.prioridade == "A"){
                A.push(p);
             }
-
-            else if (p.prioridade == "D")
-            {
+            else if (p.prioridade == "D"){
                D.push(p);
             }
-            else if (p.prioridade == "B")
-            {
+            else if (p.prioridade == "B"){
                B.push(p);
             }
+            int total = V.size() + A.size() + D.size() + B.size();
+            maxlotacao = max(maxlotacao, total);
+            break;
         }
         case 'A':{
             cout << p.hh << p.mm;
@@ -59,10 +62,12 @@ int main(){
         }
         case 'Q':{
             controle = false;
+            break;
         }
 
         default:
             controle = false;
+            break;
         }
     }
 
