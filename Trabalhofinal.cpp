@@ -4,7 +4,7 @@
 using namespace std;
 struct paciente
 {
-    int senha;
+    string senha;
     string prioridade;
     int hh;
     int mm;
@@ -27,7 +27,7 @@ int main(){
 
     int totalAtendidos = 0;
     int atendidosV = 0, atendidosA = 0, atendidosD = 0, atendidosB = 0;
-    int maxlotacao = 0;
+    int maxlotacao = V.size() + A.size() + D.size() + B.size();
     int esperaMaxima = 0;
     while (controle){
         cout << "\n[C] Chegada\n[A] Atendimento\n[D] Display\n[Q] Sair\n> ";
@@ -58,14 +58,22 @@ int main(){
                 cout << p.hh << p.mm << "Sem pacientes aguardando atendimento." << endl;
             }
             else{
-
+                totalAtendidos++;
             }
             break;
         }
         case 'D':{
+            cout << "V:" << V.size() << " " << "A:" << A.size() << " " << "D:" << 
+            D.size() << " " << "B:" <<
+            B.size() << "|" << " Atendidos:" <<totalAtendidos << endl;
+
             break;
         }
         case 'Q':{
+            cout << "Total Atendidos:" << totalAtendidos << "\n"
+            << "V=" << V.size() << " " << "A=" << A.size() << " " << "D=" <<
+            D.size() << " " << "B=" << B.size() << "\n"
+            << "Pico de lotação" << maxlotacao << "\n";
             controle = false;
             break;
         }
