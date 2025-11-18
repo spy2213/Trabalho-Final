@@ -49,6 +49,12 @@ int main(){
             else if (p.prioridade == "B"){
                B.push(p);
             }
+            /*switch (p.prioridade) {
+                case 'V': V.push(p); break;
+                case 'A': A.push(p); break;
+                case 'D': D.push(p); break;
+                default:  B.push(p); break;
+            }*/
             int total = V.size() + A.size() + D.size() + B.size();
             maxlotacao = max(maxlotacao, total);
             break;
@@ -83,6 +89,10 @@ int main(){
             break;
         }
     }
-
+    
     return 0;
 }
+
+
+
+// while (opção != 4)
