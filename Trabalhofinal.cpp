@@ -1,24 +1,15 @@
 #include <iostream>
 #include <queue>
+#include <string>
 
 using namespace std;
 struct paciente
 {
     string senha;
-    string prioridade;
+    char prioridade;
     int hh;
     int mm;
 };
-
-
-/*bool compara(const  &e1, const  &e2){
-    return(c1.P > e2.P) || // primeiro critério
-          (e1.P == e2.P && e1.saldo > e2.saldo) || //segundo critério
-          (e1.P == e2.P && e1.saldo == e2.saldo && e1.SG > e2.SG) || //terceiro 
-          (e1.P == e2.P && e1.saldo == e2.saldo && e1.SG == e2.SG && e1.nome < e2.nome); // quarto critérios
-          bool da prova pra usar como base
-}*/
-
 
 int main(){
     queue<paciente> V, A, D, B;
@@ -37,34 +28,51 @@ int main(){
 
         case 'C':{
             cin >> p.senha >> p.prioridade >> p.hh >> p.mm;
-            if(p.prioridade == "V"){
-                V.push(p);
-            }
-            else if (p.prioridade == "A"){
-               A.push(p);
-            }
-            else if (p.prioridade == "D"){
-               D.push(p);
-            }
-            else if (p.prioridade == "B"){
-               B.push(p);
-            }
-            /*switch (p.prioridade) {
+            switch (p.prioridade) { 
                 case 'V': V.push(p); break;
                 case 'A': A.push(p); break;
                 case 'D': D.push(p); break;
                 default:  B.push(p); break;
-            }*/
+            }
             int total = V.size() + A.size() + D.size() + B.size();
             maxlotacao = max(maxlotacao, total);
             break;
         }
-        case 'A':{
+        case 'A': {
+            int ah, am;
+            cin >> ah >> am;
+
             if (V.empty() && A.empty() && D.empty() && B.empty()) {
-                cout << p.hh << p.mm << "Sem pacientes aguardando atendimento." << endl;
-            }
-            else{
+                cout << ah << " " << am << "Sem pacientes aguardando atendimento " << endl;
+            } 
+            else {
+                paciente atendido;
+                if (!V.empty()) {
+                    atendido = V.front();
+                    V.pop();
+                    atendidosV++;
+                }
+                else if (!A.empty()) {
+                    atendido = A.front();
+                    A.pop();
+                    atendidosA++;
+                }
+                else if (!D.empty()) {
+                    atendido = D.front();
+                    D.pop();
+                    atendidosD++;
+                }
+                else {
+                    atendido = B.front();
+                    B.pop();
+                    atendidosB++;
+                }
                 totalAtendidos++;
+                cout << "Atendido: " << atendido.senha
+                    << " (" << atendido.prioridade << ") às "
+                    << atendido.hh << ":" 
+                    << (atendido.mm < 10 ? "0" : "") << atendido.mm
+                    << endl;
             }
             break;
         }
