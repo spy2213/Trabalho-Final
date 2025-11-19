@@ -43,7 +43,7 @@ int main(){
             cin >> ah >> am;
 
             if (V.empty() && A.empty() && D.empty() && B.empty()) {
-                cout << ah << " " << am << "Sem pacientes aguardando atendimento " << endl;
+                cout << ah << " " << am << " Sem pacientes aguardando atendimento " << endl;
             } 
             else {
                 paciente atendido;
@@ -67,11 +67,15 @@ int main(){
                     B.pop();
                     atendidosB++;
                 }
+                int chegada = atendido.hh * 60 + atendido.mm;
+                int agora = ah * 60 + am;
+                int espera = agora - chegada;
+                esperaMaxima = max(esperaMaxima, espera);
                 totalAtendidos++;
                 cout << "Atendido: " << atendido.senha
                     << " (" << atendido.prioridade << ") às "
-                    << atendido.hh << ":" 
-                    << (atendido.mm < 10 ? "0" : "") << atendido.mm
+                    << ah << ":" 
+                    << (am < 10 ? "0" : "") << am
                     << endl;
             }
             break;
@@ -84,10 +88,15 @@ int main(){
             break;
         }
         case 'Q':{
-            cout << "Total Atendidos:" << totalAtendidos << "\n"
-            << "V=" << V.size() << " " << "A=" << A.size() << " " << "D=" <<
-            D.size() << " " << "B=" << B.size() << "\n"
-            << "Pico de lotação" << maxlotacao << "\n";
+            cout << "--- RELATÓRIO FINAL ---\n";
+            cout << "Total atendidos: " << totalAtendidos << "\n";
+            cout << "Por prioridade: "
+                << "V=" << atendidosV << " "
+                << "A=" << atendidosA << " "
+                << "D=" << atendidosD << " "
+                << "B=" << atendidosB << "\n";
+            cout << "Pico de lotação: " << maxlotacao << "\n";
+            cout << "Espera máxima: " << esperaMaxima << " min\n";
             controle = false;
             break;
         }
