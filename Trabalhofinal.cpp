@@ -1,7 +1,17 @@
 #include <iostream>
 #include <queue>
 #include <string>
-
+#include <cctype>
+//funçao para deixar a entrada sempre maiusculo
+std::string toUpperString(std::string s) {
+    for(char &c : s) {
+        c = std::toupper(static_cast<unsigned char>(c));
+    }
+    return s;
+}
+char toUpperChar(char c) {
+    return std::toupper(static_cast<unsigned char>(c));
+}
 using namespace std;
 struct paciente
 {
@@ -23,11 +33,13 @@ int main(){
     while (controle){
         cout << "\n[C] Chegada\n[A] Atendimento\n[D] Display\n[Q] Sair\n> ";
         cin >> opcao;
+        opcao = toUpperChar(opcao);
         paciente p;
         switch (opcao){
 
         case 'C':{
             cin >> p.senha >> p.prioridade >> p.hh >> p.mm;
+            p.prioridade = toUpperChar(p.prioridade);
             switch (p.prioridade) { 
                 case 'V': V.push(p); break;
                 case 'A': A.push(p); break;
